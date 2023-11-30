@@ -1,15 +1,19 @@
 let rock = "ROCK";
 let paper = "PAPER"
 let scissors = "SCISSORS";
-let playerChoice;
+let playerSelection;
+//let playerChoice;
 let computerSelection= 0;
 let options = [rock, paper, scissors];
+let computerScore = 0;
+let playerScore = 0;
+
 
 //prompting the player for a new answer
-function newAnswer() {
+/*function newAnswer() {
     playerChoice = prompt("Rock, paper, scissors?");
     return playerChoice;
-}
+}*/
 
 //randomize and store the computer choice in a new variable
 function getComputerChoice() {
@@ -20,7 +24,7 @@ function getComputerChoice() {
 }
 
 //store player input as a variable and case check
-function getPlayerChoice(playerChoice) {
+/*function getPlayerChoice(playerChoice) {
     
     if (playerChoice.toString().toUpperCase() === rock) {
         playerSelection = rock;
@@ -38,11 +42,55 @@ function getPlayerChoice(playerChoice) {
     }   
     console.log(playerSelection); 
     return playerSelection;
-}   
+}
+*/
+function startGame() {
+const container = document.querySelector('.containerOfButtons');
+const rockButton = document.querySelector('#rock');
+const paperButton = document.querySelector('#paper');
+const scissorsButton = document.querySelector('#scissors');
 
-//scores to keep up
-let computerScore = 0;
-let playerScore = 0;
+rockButton.addEventListener('click', () => {
+    playerSelection = rockButton.value;
+    getComputerChoice();
+    displayComputerChoice (computerSelection);
+    displayPlayerChoice(playerSelection);
+    playRound (playerSelection, computerSelection);
+    //console.log (playerSelection);
+    return playerSelection; })
+
+paperButton.addEventListener('click', () => {
+    playerSelection = paperButton.value;
+    getComputerChoice();
+    displayComputerChoice (computerSelection);
+    displayPlayerChoice(playerSelection);
+    playRound (playerSelection, computerSelection);
+    //console.log (playerSelection);
+    return playerSelection; })
+
+scissorsButton.addEventListener('click', () => {
+    playerSelection = scissorsButton.value;
+    getComputerChoice();
+    displayComputerChoice (computerSelection);
+    displayPlayerChoice(playerSelection);
+    playRound (playerSelection, computerSelection);
+    //console.log (playerSelection);
+    return playerSelection; })
+}
+
+function displayPlayerChoice() {
+    const container= document.querySelector('#playerChoice')
+    const choice = document.createElement ('span');
+    choice.textContent = playerSelection + " ";
+    playerChoice.appendChild(choice); }
+
+function displayComputerChoice() {
+    const containerComputer= document.querySelector('#computerChoice')
+    const choiceComputer = document.createElement ('span');
+    choiceComputer.textContent = computerSelection + " ";
+    computerChoice.appendChild(choiceComputer); }
+
+
 
 function playRound (playerSelection, computerSelection) {
     
@@ -73,8 +121,8 @@ function playRound (playerSelection, computerSelection) {
         console.log("You Win this Round! Rock beats scissors");
         playerScore++;
         }
-    //console.log(playerScore);
-    //console.log(computerScore);
+    console.log(playerScore);
+    console.log(computerScore);
     
     return playerScore, computerScore;
 }   
@@ -91,11 +139,12 @@ function announceWinner(playerScore, computerScore) {
         console.log("DRAW");
     }
 }
-
+/*
     for (let i = 0; i < 5; i++) {
         newAnswer();
         getComputerChoice();
         getPlayerChoice(playerChoice);
         playRound(playerSelection, computerSelection);
 }
-    announceWinner(playerScore, computerScore);
+*/
+startGame();

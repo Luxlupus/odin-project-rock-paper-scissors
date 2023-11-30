@@ -4,9 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="javascript.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script defer src ="javascript.js"></script> 
 </head>
 <body>
-    
+    <h1 class="headingOne">Choose wisely!</h1>
+    <div class = "containerOfButtons">
+        <button class="buttonRock" type = "button" value = "ROCK" id="rock"><img src ="rock.svg"></button>
+        <button class="buttonPaper" type = "button" value = "PAPER" id= "paper"><img src="paper.svg"></button>
+        <button class="buttonScissors" type = "button" value = "SCISSORS" id="scissors"><img src="scissors.svg"></button>
+    </div>
+    <div class="containerOfChoices">
+        <h4 id="playerChoice">You choice: </h4>
+        <h4 id="computerChoice">Computer choice: </h4>
+    </div>
+    <div class="result">
+        <h4 id="result">some result placeholder</h4>
+    </div>
+    <div class="announceWinner">
+        <h3 id="winner">Winner is: </h3>
+    </div>
+
 </body>
 </html>
