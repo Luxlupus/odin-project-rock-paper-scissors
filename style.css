@@ -59,12 +59,12 @@ button:hover
 }
 #winner {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     font-weight: bold;
     font-size: 2em;
     gap: 2em;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 30%;
+    margin-right: 30%;
 }
 .scoreboard {
     display: flex;
