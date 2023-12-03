@@ -59,7 +59,7 @@ button:hover
 }
 #winner {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     font-weight: bold;
     font-size: 2em;
     gap: 2em;
