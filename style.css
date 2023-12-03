@@ -76,3 +76,7 @@ button:hover
     justify-content: space-around;
     align-content: center;
 }
+#footer {
+    display: flex;
+    justify-content: center;
+}
