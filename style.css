@@ -1,22 +1,24 @@
 body {
-    background-color: ghostwhite;
+    background-color: silver;
+    font-family: "Audiowide", sans-serif;
+    margin-left: 0%;
+    margin-right: 0%;
 }
 .headingOne {
     display: flex;
     justify-content: center;
     padding: 1em;
-    border-style: outset;
     margin-bottom: 0;
-    
+    background-color: rgba(34, 34, 34, 0.445);
+    margin-top: 0%;
 }
 .containerOfButtons {
     display: flex;
     align-items: center;
     align-content: center;
     justify-content:space-around;
-    height: 8em;
-    border-style: outset;
-    
+    height: 7em;
+    padding: 2.5em;    
 }
 
 .buttonRock,
@@ -52,18 +54,25 @@ button:hover
 }
 .containerOfChoices {
     display: flex;
-    flex-direction: column;
-    border-style: outset;
-    padding: 1em;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#winner {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 2em;
+    gap: 2em;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+.scoreboard {
+    display: flex;
+    justify-content: center;
+    padding: 2em;
 }
 .result {
     display: flex;
-    border-style: outset;
-    justify-content: center;
-
-}
-.announceWinner {
-    display: flex;
-    border-style: outset;
-    padding: 1em;
+    justify-content: space-around;
+    align-content: center;
 }

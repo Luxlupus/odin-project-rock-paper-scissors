@@ -1,97 +1,74 @@
 let rock = "ROCK";
 let paper = "PAPER"
 let scissors = "SCISSORS";
-let playerSelection;
-//let playerChoice;
-let computerSelection= 0;
 let options = [rock, paper, scissors];
+let playerSelection;
+let computerSelection;
 let computerScore = 0;
 let playerScore = 0;
-
-
-//prompting the player for a new answer
-/*function newAnswer() {
-    playerChoice = prompt("Rock, paper, scissors?");
-    return playerChoice;
-}*/
 
 //randomize and store the computer choice in a new variable
 function getComputerChoice() {
     let index = Math.floor(Math.random() * 3);
     computerSelection= options[index];
-    //console.log(computerSelection);
     return computerSelection;
 }
 
-//store player input as a variable and case check
-/*function getPlayerChoice(playerChoice) {
-    
-    if (playerChoice.toString().toUpperCase() === rock) {
-        playerSelection = rock;
-    }
-    else if (playerChoice.toString().toUpperCase() === paper) {
-        playerSelection = paper;
-    }
-    else if (playerChoice.toString().toUpperCase() === scissors) {
-        playerSelection = scissors;
-    }
-    //loop until correct answer
-    else {
-            alert("Invalid");
-            getPlayerChoice(newAnswer());
-    }   
-    console.log(playerSelection); 
-    return playerSelection;
-}
-*/
-function startGame() {
+function main() {
+
 const container = document.querySelector('.containerOfButtons');
 const rockButton = document.querySelector('#rock');
 const paperButton = document.querySelector('#paper');
 const scissorsButton = document.querySelector('#scissors');
 
+displayScore(computerScore, playerScore);
+displayComputerChoice (computerSelection);
+
+
 rockButton.addEventListener('click', () => {
+
     playerSelection = rockButton.value;
     getComputerChoice();
-    displayComputerChoice (computerSelection);
-    displayPlayerChoice(playerSelection);
     playRound (playerSelection, computerSelection);
-    //console.log (playerSelection);
-    return playerSelection; })
+    updateComputerChoice();
+    updateScore();
+    announceWinner(playerScore, computerScore);
+    if (playerScore === 5 || computerScore === 5)
+    {
+        RetryBtn();
+        addRetryButton();
+    }
+    })
 
 paperButton.addEventListener('click', () => {
     playerSelection = paperButton.value;
     getComputerChoice();
-    displayComputerChoice (computerSelection);
-    displayPlayerChoice(playerSelection);
     playRound (playerSelection, computerSelection);
-    //console.log (playerSelection);
-    return playerSelection; })
+    updateComputerChoice();
+    updateScore();
+    announceWinner(playerScore, computerScore);
+    if (playerScore === 5 || computerScore === 5)
+    {
+        RetryBtn();
+        addRetryButton();
+    }
+    })
+    
 
 scissorsButton.addEventListener('click', () => {
     playerSelection = scissorsButton.value;
     getComputerChoice();
-    displayComputerChoice (computerSelection);
-    displayPlayerChoice(playerSelection);
     playRound (playerSelection, computerSelection);
-    //console.log (playerSelection);
-    return playerSelection; })
+    updateComputerChoice();
+    updateScore();
+    announceWinner(playerScore, computerScore);
+    if (playerScore === 5 || computerScore === 5)
+    {
+        RetryBtn();
+        addRetryButton();
+    }
+    })
 }
-
-function displayPlayerChoice() {
-    const container= document.querySelector('#playerChoice')
-    const choice = document.createElement ('span');
-    choice.textContent = playerSelection + " ";
-    playerChoice.appendChild(choice); }
-
-function displayComputerChoice() {
-    const containerComputer= document.querySelector('#computerChoice')
-    const choiceComputer = document.createElement ('span');
-    choiceComputer.textContent = computerSelection + " ";
-    computerChoice.appendChild(choiceComputer); }
-
-
-
 function playRound (playerSelection, computerSelection) {
     
     if (computerSelection === playerSelection) {
@@ -121,30 +98,73 @@ function playRound (playerSelection, computerSelection) {
         console.log("You Win this Round! Rock beats scissors");
         playerScore++;
         }
-    console.log(playerScore);
-    console.log(computerScore);
-    
-    return playerScore, computerScore;
-}   
 
+return playerScore, computerScore;
+}   
+function displayComputerChoice() {
+    const containerComputer= document.querySelector('#computerChoice')
+    const choiceComputer = document.createElement ('span');
+    choiceComputer.setAttribute("id", "nextChoice");
+    choiceComputer.textContent = computerSelection;
+    containerComputer.appendChild(choiceComputer);
+}
+function updateComputerChoice() {
+    const updatedComputerChoice = document.querySelector("#nextChoice");
+    updatedComputerChoice.textContent = computerSelection;
+}
+function displayScore(computerScore, playerScore) {
+
+    const computerResult = document.querySelector("#computerResult");
+    const spanComputerResult = document.createElement ('span');
+    spanComputerResult.setAttribute("id", "score");
+    spanComputerResult.textContent = computerScore;
+    computerResult.appendChild(spanComputerResult);
+
+    const playerResult = document.querySelector("#playerResult");
+    const spanPlayerResult = document.createElement ('span');
+    spanPlayerResult.setAttribute("id", "playerScore");
+    spanPlayerResult.textContent = playerScore;
+    playerResult.appendChild(spanPlayerResult);
+
+}
+function updateScore() {
+    const updatedComputerScore = document.querySelector("#score");
+    updatedComputerScore.textContent = computerScore;
+    const updatedPlayerScore = document.querySelector("#playerScore")
+    updatedPlayerScore.textContent = playerScore;
+}
 //function to announce the winner
 function announceWinner(playerScore, computerScore) {
-    if (playerScore > computerScore) {
-        console.log("YOU WON");
-    }
-    else if (playerScore < computerScore) {
-        console.log("YOU LOSE");
-    }
-    else if (playerScore = computerScore) {
-        console.log("DRAW");
+
+    const winner = document.querySelector("#winner");
+    
+    if (playerScore == 5 && playerScore > computerScore) {
+       
+        winner.textContent ="Congratulations! You have won!";  
+    }   
+    else if(computerScore == 5 && computerScore > playerScore) {
+       
+        winner.textContent ="You lose!"; 
     }
 }
-/*
-    for (let i = 0; i < 5; i++) {
-        newAnswer();
-        getComputerChoice();
-        getPlayerChoice(playerChoice);
-        playRound(playerSelection, computerSelection);
+//make all buttons retry when score is 5
+
+function RetryBtn() {
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => { button.addEventListener('click',() => {
+        window.parent.location = window.parent.location.href;
+        }) 
+    })    
 }
-*/
-startGame();
+//show a special retry button
+function addRetryButton() {
+    const winner= document.querySelector("#winner");
+    const retryBtn = document.createElement('button');
+    retryBtn.setAttribute('id', 'retry');
+    retryBtn.type="button";
+    retryBtn.textContent="RETRY"   
+    winner.appendChild(retryBtn);
+    retryBtn.addEventListener('click',() => {
+        window.parent.location = window.parent.location.href;})
+}
+main();
